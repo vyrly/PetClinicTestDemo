@@ -1,13 +1,12 @@
-package com.petclinic;
+package com.petclinic.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
- * Created by vyrly on 6/2/17.
+ * Created by vyrly on 6/3/17.
  */
-public class HomePage extends FindAllLinks{
-
+public class ErrorPage {
     private static By HonmeOwnersLink = By.linkText("Home");
     private static By findOwnersLink = By.linkText("Find owners");
     private static By veterinariansLink = By.linkText("Veterinarians");
@@ -16,9 +15,9 @@ public class HomePage extends FindAllLinks{
 
     private WebDriver driver;
 
-    public HomePage(WebDriver driver) {
+    public ErrorPage(WebDriver driver) {
         this.driver = driver;
-        driver.get("http://localhost:8080/petclinic/");
+        driver.get("http://localhost:8080/oups.html");
     }
 
     public FindOwnersPage goTo() {
