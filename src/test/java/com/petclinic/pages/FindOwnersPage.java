@@ -4,6 +4,7 @@ import com.petclinic.components.NavigationMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -11,13 +12,13 @@ public class FindOwnersPage {
     private static final String pageURL = "http://localhost:8080/petclinic/owners/find.html";
     private final NavigationMenu navigationMenu;
 
-    @FindBy(id="lastName")
+    @FindBy(tagName="input")
     WebElement ownerLastNameInput;
 
     @FindBy(className="help-inline")
     WebElement ownerLastNameHelpInline;
 
-    @FindBy(css="input[type=\"submit\"]")
+    @FindBy(tagName="button")
     WebElement findOwnerBtn;
 
     @FindBy(linkText="Add Owner")
@@ -37,8 +38,10 @@ public class FindOwnersPage {
     }
 
     public String enterTextToOwnerLastNameInput(String lastName) {
-        ownerLastNameInput.click();
-        ownerLastNameInput.sendKeys(lastName);
+        //ownerLastNameInput.click();
+        new Actions(driver).moveToElement(ownerLastNameInput).click().sendKeys(lastName).perform();
+        //new Actions(driver).sendKeys(lastName);
+        //ownerLastNameInput.sendKeys(lastName);
         return ownerLastNameInput.getText();
     }
 
@@ -47,7 +50,8 @@ public class FindOwnersPage {
     }
 
     public String getOwnerLastNameInput() {
-        return ownerLastNameInput.getText();
+        //This is the input element - need to get the value attribute
+        return ownerLastNameInput.getAttribute("value");
     }
 
     public String getOwnerLastNameHelpInline() {
